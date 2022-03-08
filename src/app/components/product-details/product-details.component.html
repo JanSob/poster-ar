@@ -1,0 +1,21 @@
+<div class="card h-100" *ngIf="poster">
+
+    <div *ngIf="fileObjectUrl">
+      <model-viewer camera-orbit="25deg 55deg 20m"
+                    [src]="fileObjectUrl" poster="{{poster.thumbnailImageUrl}}" ar ar-scale="fixed" ar-modes="webxr scene-viewer quick-look" camera-controls alt="A product">
+        <button slot="ar-button" style="background-color: unset; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">
+          <p class="card-text">👋 Hier drücken um den Teppich virtuell im eigenen Zimmer zu testen</p>
+        </button>
+
+        <div style="margin-left: 30px; margin-top: 20px;" id="carpetDetailsAnnotation">
+          <p class="card-text">{{poster.details}}</p>
+          <p class="card-text">{{poster.country}}</p>
+          <p class="card-text">{{poster.lengthMm}}x{{poster.widthMm}} mm</p>
+          <p class="card-text"><small class="text-muted">ID: {{poster.id}}</small></p>
+        </div>
+
+      </model-viewer>
+      <button type="button" class="btn btn-outline-danger float-right" style="margin-right: 30px" (click)="back()">Zurück</button>
+    </div>
+
+</div>

@@ -1,0 +1,22 @@
+<div class="card h-100">
+  <!-- Product image-->
+  <img [routerLink]="['details', poster.id]" class="card-img-top" src="{{poster.thumbnailImageUrl}}" alt="..." />
+  <!-- Product details-->
+  <div class="card-body p-4">
+    <div class="text-center">
+      <!-- Product name-->
+      <h2 class="fw-bolder">{{poster.region}}</h2>
+      <h4 class="fw-bolder">Ursprungsland: {{poster.country}}</h4>
+      <h4 class="fw-bolder">Maße: {{poster.lengthMm}}x{{poster.widthMm}} cm</h4>
+      <!-- Product price-->
+      <div *ngIf="poster.price > 0">
+        Preis: {{poster.price}}€
+      </div>
+    </div>
+  </div>
+  <!-- Product actions-->
+  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent" >
+    <div class="text-center"><a class="btn btn-outline-dark mt-auto" [routerLink]="['details', poster.id]">3D-Ansicht</a></div>
+  </div>
+</div>
+
