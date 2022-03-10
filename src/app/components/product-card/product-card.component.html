@@ -7,7 +7,7 @@
       <!-- Product name-->
       <h2 class="fw-bolder">{{poster.region}}</h2>
       <h4 class="fw-bolder">Ursprungsland: {{poster.country}}</h4>
-      <h4 class="fw-bolder">Maße: {{poster.lengthMm}}x{{poster.widthMm}} cm</h4>
+      <h4 class="fw-bolder">Maße: {{poster.lengthMm/10}} x {{poster.widthMm/10}} cm</h4>
       <!-- Product price-->
       <div *ngIf="poster.price > 0">
         Preis: {{poster.price}}€

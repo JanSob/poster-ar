@@ -8,8 +8,44 @@
 .row{
   display: flex;
 }
-model-viewer {
-  float: top;
-  width: 100%;
-  height: 512px;
+
+
+@media screen and (min-height: 567px) {
+  model-viewer {
+    float: top;
+    width: 100%;
+    height: 500px;
+  }
+}
+
+@media screen and (min-height: 1000px) {
+  model-viewer {
+    float: top;
+    width: 100%;
+    height: 800px;
+  }
+}
+
+@media screen and (min-height: 1900px) {
+  model-viewer {
+    float: top;
+    width: 100%;
+    height: 1700px;
+  }
+}
+
+#annotation{
+  background-color: transparent;
+  position: absolute;
+  transform: translate(10px, 10px);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+model-viewer[ar-status="object-placed"] > #hotspot-info {
+  display: block;
+}
+
+model-viewer[ar-status="not-presenting"] > #hotspot-info {
+  display: block;
 }

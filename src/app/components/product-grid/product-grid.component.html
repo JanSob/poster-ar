@@ -4,44 +4,16 @@
 
    <div class="container px-4 px-lg-5 mt-5">
 
-
-     <div class="col">
-
-       <div style="margin-bottom: 8px" class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="model">
-
-         <label ngbButtonLabel class="btn-outline-secondary" (click)="filterCarpets('all')">
-           <input ngbButton type="radio" [value]="1">Alle
-         </label>
-
-         <label ngbButtonLabel class="btn-outline-secondary" (click)="filterCarpets('small')">
-           <input ngbButton type="radio" [value]="2">Klein
-         </label>
-
-         <label ngbButtonLabel class="btn-outline-secondary" (click)="filterCarpets('medium')">
-           <input ngbButton type="radio" [value]="3">Mittel
-         </label>
-
-         <label ngbButtonLabel class="btn-outline-secondary" (click)="filterCarpets('large')">
-           <input ngbButton type="radio" [value]="4">Groß
-         </label>
-
-         <label ngbButtonLabel class="btn-outline-secondary" (click)="filterCarpets('long')">
-           <input ngbButton type="radio" [value]="5">Lang
-         </label>
-
-       </div>
-
-     </div>
-
-
-    <div  class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+    <div  class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" *ngIf="totalNumberPosters">
       <div *ngFor="let inputPoster of allPosters" class="col mb-5">
-      <app-product-card [carpet]="inputPoster"></app-product-card>
+      <app-product-card [poster]="inputPoster"></app-product-card>
       </div>
     </div>
+
      <mat-paginator #paginator class="large" [pageSizeOptions]="[10, 25, 100]" [pageSize]="10" [length]="totalNumberPosters"
                     (page)="nextPage($event)">
 
      </mat-paginator>
+
   </div>
 </section>

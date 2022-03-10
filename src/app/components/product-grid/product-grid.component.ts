@@ -11,36 +11,30 @@ import { Poster } from 'src/app/models/poster';
   templateUrl: './product-grid.component.html',
   styleUrls: ['./product-grid.component.css']
 })
-export class ProductGridComponent implements AfterViewInit {
+export class ProductGridComponent implements OnInit {
   @ViewChild('paginator') paginator!: MatPaginator;
   @Input() posterSize!: string;
   allPosters: Poster[] = [];
   totalNumberPosters!: number;
+  pageSize = 10;
   model = 1;
 
   constructor(private posterService: PosterService) {
-
   }
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     const request = {};
-    if(localStorage.getItem('page') && localStorage.getItem('posterSize')){
-
+    if(localStorage.getItem('page')){
       // @ts-ignore
-      this.paginator.pageIndex = localStorage.getItem('page');
-      // @ts-ignore
-      this.posterSize = localStorage.getItem('posterSize');
       let page = localStorage.getItem('page')
 
       // @ts-ignore
-      this.posterService.queryMock(this.extracted(page.toString())).subscribe((postersPage: PostersPage) => {
+      this.posterService.queryMock(page).subscribe((postersPage: PostersPage) => {
         this.allPosters = postersPage.content;
         this.totalNumberPosters = postersPage.totalElements;
       });
     }
     else{
-      this.posterSize = 'all';
-      localStorage.setItem('posterSize', this.posterSize);
       localStorage.setItem('page', '0');
       // @ts-ignore
       request['page'] = 0;
@@ -53,86 +47,14 @@ export class ProductGridComponent implements AfterViewInit {
     }
   }
 
-
-
-  private extracted(page:number) {
-    const filterRequest = {}
-    // @ts-ignore
-    filterRequest['page'] = page;s
-    switch (this.posterSize){
-      case "small": {
-        this.model = 2;
-        // @ts-ignore
-        filterRequest['lengthMmMin'] = 0;
-        // @ts-ignore
-        filterRequest['lengthMmMax'] = 120;
-        // @ts-ignore
-        filterRequest['widthMmMin'] = 0;
-        // @ts-ignore
-        filterRequest['widthMmMax'] = 150;
-        break;
-      }
-      case "medium": {
-        this.model = 3;
-        // @ts-ignore
-        filterRequest['lengthMmMin'] = 121;
-        // @ts-ignore
-        filterRequest['lengthMmMax'] = 250;
-        // @ts-ignore
-        filterRequest['widthMmMin'] = 100;
-        // @ts-ignore
-        filterRequest['widthMmMax'] = 200;
-        break;
-      }
-      case "large": {
-        this.model = 4;
-        // @ts-ignore
-        filterRequest['lengthMmMin'] = 200;
-        // @ts-ignore
-        filterRequest['lengthMmMax'] = 1000;
-        // @ts-ignore
-        filterRequest['widthMmMin'] = 200;
-        // @ts-ignore
-        filterRequest['widthMmMax'] = 1000;
-        break;
-      }
-      case "long": {
-        this.model = 5;
-        // @ts-ignore
-        filterRequest['lengthMmMin'] = 250;
-        // @ts-ignore
-        filterRequest['lengthMmMax'] = 1000;
-        // @ts-ignore
-        filterRequest['widthMmMin'] = 65;
-        // @ts-ignore
-        filterRequest['widthMmMax'] = 150;
-        break;
-      }
-      case "all": {
-        this.model = 1;
-        //statements;
-        // @ts-ignore
-        filterRequest['lengthMmMin'] = 0;
-        // @ts-ignore
-        filterRequest['lengthMmMax'] = 100000;
-        // @ts-ignore
-        filterRequest['widthMmMin'] = 0;
-        // @ts-ignore
-        filterRequest['widthMmMax'] = 100000;
-        break;
-      }
-      case "custom": {
-        //statements;
-        break;
-      }
-    }
-    return filterRequest;
-  }
-
   nextPage(event: PageEvent) {
     localStorage.setItem('page', String(event.pageIndex));
 
-    this.posterService.queryMock(this.extracted(event.pageIndex)).subscribe(
+    const filterRequest = {}
+    // @ts-ignore
+    filterRequest['page'] = page;
+
+    this.posterService.queryMock(filterRequest).subscribe(
       (allPosters: PostersPage)=>{
         this.allPosters = allPosters.content;
         this.totalNumberPosters = allPosters.totalElements;
@@ -147,14 +69,4 @@ export class ProductGridComponent implements AfterViewInit {
     window.scroll(0,0);
   }
 
-  filterCarpets(posterSize: string) {
-    this.posterSize = posterSize;
-    localStorage.setItem('posterSize', this.posterSize);
-    localStorage.setItem('page', '0');
-
-    let pageEvent = new PageEvent();
-    pageEvent.pageIndex = 0;
-    this.paginator.firstPage();
-    this.nextPage(pageEvent);
-  }
 }
