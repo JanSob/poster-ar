@@ -35,8 +35,8 @@ export class PosterService {
     const params = request;
     return of({content: [
       {id: 1, country: 'France', region: 'Paris', lengthMm: 1295 , widthMm: 1962, details: 'The Death of Socrates', 
-      price: 0, arReady: true, thumbnailImageUrl: '/assets/images/sokrates.jpg', 
-      fullsizeImageUrl:'/assets/images/sokrates.jpg', threeD_urlAndroid: null, threeD_urlIOS: null},
+      price: 0, arReady: true, thumbnailImageUrl: 'https://collectionapi.metmuseum.org/api/collection/v1/iiif/436105/1692908/main-image', 
+      fullsizeImageUrl:'https://collectionapi.metmuseum.org/api/collection/v1/iiif/436105/1692908/main-image', threeD_urlAndroid: null, threeD_urlIOS: null},
       {id: 2, country: 'France', region: 'Paris', lengthMm: 1473 , widthMm: 1143, details: 'The Spanish Singer', 
       price: 0, arReady: true, thumbnailImageUrl: 'https://collectionapi.metmuseum.org/api/collection/v1/iiif/436944/794730/main-image', 
       fullsizeImageUrl:'https://collectionapi.metmuseum.org/api/collection/v1/iiif/436944/794730/main-image', threeD_urlAndroid: null, threeD_urlIOS: null},
@@ -61,8 +61,8 @@ export class PosterService {
     switch(Number(id)){
       case 1: 
         return of (new Poster(1, 'France', 'Paris', 1295 , 1962, 'The Death of Socrates', 
-        0, true, '/assets/images/sokrates.jpg', 
-        '/assets/images/sokrates.jpg', null, null));
+        0, true, 'https://collectionapi.metmuseum.org/api/collection/v1/iiif/436105/1692908/main-image', 
+        'https://collectionapi.metmuseum.org/api/collection/v1/iiif/436105/1692908/main-image', null, null));
 
       case 2: 
         return of (new Poster(2, 'France', 'Paris', 1473 , 1143, 'The Spanish Singer', 
@@ -104,8 +104,8 @@ export class PosterService {
     const params = request;
     return of({content: [
       {id: 1, country: 'France', region: 'Paris', lengthMm: 1295 , widthMm: 1962, details: 'The Death of Socrates', 
-      price: 0, arReady: true, thumbnailImageUrl: '/assets/images/sokrates.jpg', 
-      fullsizeImageUrl:'/assets/images/sokrates.jpg', threeD_urlAndroid: null, threeD_urlIOS: null},
+      price: 0, arReady: true, thumbnailImageUrl: 'https://collectionapi.metmuseum.org/api/collection/v1/iiif/436105/1692908/main-image', 
+      fullsizeImageUrl:'https://collectionapi.metmuseum.org/api/collection/v1/iiif/436105/1692908/main-image', threeD_urlAndroid: null, threeD_urlIOS: null},
       {id: 2, country: 'France', region: 'Paris', lengthMm: 1473 , widthMm: 1143, details: 'The Spanish Singer', 
       price: 0, arReady: true, thumbnailImageUrl: 'https://collectionapi.metmuseum.org/api/collection/v1/iiif/436944/794730/main-image', 
       fullsizeImageUrl:'https://collectionapi.metmuseum.org/api/collection/v1/iiif/436944/794730/main-image', threeD_urlAndroid: null, threeD_urlIOS: null},
